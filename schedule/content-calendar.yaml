@@ -1,0 +1,33 @@
+# 待發布排程表
+# status: draft（等待補 caption）→ ready（人工確認可發）→ 發布成功後會被搬到 archive.yaml
+#
+# 以下兩筆是遷移現有素材時自動建立的 draft，caption/hashtags 尚未填寫，
+# 且各自還有影片素材（見 notes）目前發布腳本只支援單張圖片，先不列入 media。
+
+posts:
+  - id: momo-20260520
+    character: momo
+    date: 2026-05-20
+    platforms: [instagram]
+    caption: ""
+    hashtags: []
+    media:
+      - content/momo/2026-05/20260520/momo_20260520_morning.jpg
+      - content/momo/2026-05/20260520/momo_20260520_afternoon.jpg
+      - content/momo/2026-05/20260520/momo_20260520_cat.jpg
+    status: draft
+    scheduled_time: "08:00"
+    notes: "同資料夾另有 3 支影片（meet_dahuang / stand_walk_away / turn_run），目前發布腳本尚未支援影片，先手動處理或之後擴充 Reels 流程"
+
+  - id: momo-20260618
+    character: momo
+    date: 2026-06-18
+    platforms: [instagram]
+    caption: ""
+    hashtags: []
+    media:
+      - content/momo/2026-06/20260618/momo_20260618_morning.jpg
+      - content/momo/2026-06/20260618/momo_20260618_indoor.jpg
+      - content/momo/2026-06/20260618/momo_20260618_cat.jpg
+    status: draft
+    scheduled_time: "08:00"

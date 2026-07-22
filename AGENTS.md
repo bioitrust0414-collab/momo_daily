@@ -50,8 +50,13 @@ content/<character>/<YYYY-MM>/<YYYYMMDD>/檔案
 
 這兩個目前需手動透過 Meta for Developers 後台設定並取得。
 
+## 其他資料夾說明
+
+`reference/`：角色人設圖、企劃書、30天排程 docx、範例週貼文等參考資料。**不會**被自動化流程掃描或發布，純供人工查閱。
+
 ## 目前限制 / 待擴充
 
 - 目前只支援單張圖片發布，多圖輪播（carousel）與影片（Reels）需要另外實作 container 流程
 - 只支援 Instagram，尚未加入 Facebook 發布邏輯
 - Access Token 過期需要人工重新授權
+- `momo-20260520` / `momo-20260618` 兩筆是遷移時自動建立的 draft，caption 尚未填寫，需要人工（或文案 agent）補上再改成 `ready`
