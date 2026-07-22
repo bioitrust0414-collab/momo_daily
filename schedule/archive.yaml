@@ -1,2 +1,11 @@
-# 已發布貼文歷史紀錄（由 publish_to_meta.py 自動寫入，不需手動維護）
 posts: []
+published_posts:
+- id: momo-20260721
+  character: momo
+  date: '2026-07-22'
+  platforms:
+  - instagram
+  permalink: https://www.instagram.com/p/DbHO7e6kYb2/
+  caption: 'Day 1: 初登場 (台北101)'
+  status: published
+  published_at: '2026-07-22T23:09:26.789204'
