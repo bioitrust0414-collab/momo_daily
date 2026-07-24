@@ -9,3 +9,12 @@ published_posts:
   caption: 'Day 1: 初登場 (台北101)'
   status: published
   published_at: '2026-07-22T23:09:26.789204'
+- id: momo-20260724
+  character: momo
+  date: '2026-07-24'
+  platforms:
+  - instagram
+  permalink: https://www.instagram.com/p/DbKXFFXIEjF/
+  caption: 'Day 2: 日常趣事 (信義區街頭)'
+  status: published
+  published_at: '2026-07-24T04:20:10.291610'
