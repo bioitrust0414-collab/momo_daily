@@ -18,3 +18,12 @@ published_posts:
   caption: 'Day 2: 日常趣事 (信義區街頭)'
   status: published
   published_at: '2026-07-24T04:20:10.291610'
+- id: momo-20260724-corrected
+  character: momo
+  date: '2026-07-24'
+  platforms:
+  - instagram
+  permalink: https://www.instagram.com/p/DbKYJoVoI4v/
+  caption: 'Day 2: 日常趣事 (信義區咖啡廳 - 正確配圖)'
+  status: published
+  published_at: '2026-07-24T04:32:04.040411'
