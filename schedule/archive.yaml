@@ -27,3 +27,12 @@ published_posts:
   caption: 'Day 2: 日常趣事 (信義區咖啡廳 - 正確配圖)'
   status: published
   published_at: '2026-07-24T04:32:04.040411'
+- id: momo-20260724-day3
+  character: momo
+  date: '2026-07-27'
+  platforms:
+  - instagram
+  permalink: https://www.instagram.com/p/DbRzbJfEb5y/
+  caption: 早安！心靈雞湯風格 (公園綠意 - 試發)
+  status: published
+  published_at: '2026-07-27T01:42:18.378914'
