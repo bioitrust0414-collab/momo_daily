@@ -1,7 +1,6 @@
 """
 每日發布腳本。
 由 .github/workflows/publish.yml 排程呼叫。
-
 流程：
 1. 讀 schedule/content-calendar.yaml，找出 date == 今天 且 status == "ready" 的貼文
 2. 透過 Meta Graph API 發布到 Instagram
@@ -12,10 +11,10 @@
 - META_PAGE_TOKEN：長效 Page/IG Access Token
 - IG_USER_ID：Instagram Business 帳號的 user id
 """
-
 import os
 import sys
 import datetime
+import traceback
 import yaml
 import requests
 
@@ -27,6 +26,7 @@ GRAPH_API_VERSION = "v20.0"
 
 def load_yaml(path, default):
     if not os.path.exists(path):
+        print(f"[warn] 找不到 {path}，使用預設值")
         return default
     with open(path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -40,17 +40,43 @@ def save_yaml(path, data):
 
 def find_todays_post(calendar):
     today = datetime.date.today().isoformat()
-    for post in calendar.get("posts", []):
+    posts = calendar.get("posts", [])
+    print(f"[info] 今天日期：{today}，calendar 中共有 {len(posts)} 筆貼文")
+    for post in posts:
         if post.get("date") == today and post.get("status") == "ready":
             return post
+    # 額外印出今天日期有出現、但狀態不是 ready 的項目，方便判斷是不是狀態沒設對
+    same_day = [p for p in posts if p.get("date") == today]
+    if same_day:
+        print(f"[info] 今天有 {len(same_day)} 筆貼文但狀態不是 ready："
+              f"{[(p.get('id'), p.get('status')) for p in same_day]}")
     return None
+
+
+def verify_token(token, ig_user_id):
+    """在真正發布前，先確認 token 是否還有效，並印出明確原因。"""
+    resp = requests.get(
+        f"https://graph.facebook.com/{GRAPH_API_VERSION}/{ig_user_id}",
+        params={"fields": "id,username", "access_token": token},
+        timeout=30,
+    )
+    if resp.status_code != 200:
+        print(f"[error] Token / IG_USER_ID 驗證失敗，HTTP {resp.status_code}")
+        print(f"[error] 回應內容：{resp.text}")
+        return False
+    print(f"[info] Token 驗證成功，帳號：{resp.json()}")
+    return True
 
 
 def publish_single_image(post, token, ig_user_id):
     """單張圖片發布。多圖輪播 / 影片（Reels）需要不同的 container 流程，
     目前先支援單張圖片，之後可依 media 長度擴充。"""
+    if not post.get("media"):
+        raise ValueError(f"貼文 {post.get('id')} 沒有 media 欄位，無法發布")
+
     image_url = REPO_RAW_BASE + post["media"][0]
     caption = post.get("caption", "") + " " + " ".join(post.get("hashtags", []))
+    print(f"[info] 準備發布：{post.get('id')}，圖片網址：{image_url}")
 
     container_resp = requests.post(
         f"https://graph.facebook.com/{GRAPH_API_VERSION}/{ig_user_id}/media",
@@ -61,6 +87,9 @@ def publish_single_image(post, token, ig_user_id):
         },
         timeout=30,
     )
+    if not container_resp.ok:
+        print(f"[error] 建立 media container 失敗，HTTP {container_resp.status_code}")
+        print(f"[error] 回應內容：{container_resp.text}")
     container_resp.raise_for_status()
     container_id = container_resp.json()["id"]
 
@@ -69,6 +98,9 @@ def publish_single_image(post, token, ig_user_id):
         data={"creation_id": container_id, "access_token": token},
         timeout=30,
     )
+    if not publish_resp.ok:
+        print(f"[error] 發布 media 失敗，HTTP {publish_resp.status_code}")
+        print(f"[error] 回應內容：{publish_resp.text}")
     publish_resp.raise_for_status()
     return publish_resp.json()
 
@@ -77,7 +109,13 @@ def main():
     token = os.environ.get("META_PAGE_TOKEN")
     ig_user_id = os.environ.get("IG_USER_ID")
     if not token or not ig_user_id:
-        print("缺少 META_PAGE_TOKEN 或 IG_USER_ID 環境變數")
+        missing = []
+        if not token:
+            missing.append("META_PAGE_TOKEN")
+        if not ig_user_id:
+            missing.append("IG_USER_ID")
+        print(f"[error] 缺少環境變數：{', '.join(missing)}"
+              "（請確認 repo Secrets 有設定，且 publish.yml 的 env: 有正確傳入）")
         sys.exit(1)
 
     calendar = load_yaml(CALENDAR_PATH, {"posts": []})
@@ -85,15 +123,30 @@ def main():
 
     post = find_todays_post(calendar)
     if not post:
-        print("今天沒有 status=ready 的貼文，略過。")
+        print("[info] 今天沒有 status=ready 的貼文，略過。")
         return
+
+    if not verify_token(token, ig_user_id):
+        post["status"] = "failed"
+        post["notes"] = "token/IG_USER_ID 驗證失敗，請檢查 token 是否過期"
+        save_yaml(CALENDAR_PATH, calendar)
+        sys.exit(1)
 
     try:
         result = publish_single_image(post, token, ig_user_id)
     except requests.HTTPError as e:
-        print(f"發布失敗：{e}\n回應內容：{e.response.text if e.response else ''}")
+        print(f"[error] 發布失敗（HTTPError）：{e}")
         post["status"] = "failed"
         post["notes"] = str(e)
+        save_yaml(CALENDAR_PATH, calendar)
+        sys.exit(1)
+    except Exception as e:
+        # 捕捉非預期例外（YAML 壞掉、KeyError、網路逾時等），
+        # 印出完整 traceback，避免以後又只看到「exit code 1」不知道原因
+        print(f"[error] 發布過程發生未預期例外：{e}")
+        traceback.print_exc()
+        post["status"] = "failed"
+        post["notes"] = f"未預期例外：{e}"
         save_yaml(CALENDAR_PATH, calendar)
         sys.exit(1)
 
@@ -103,10 +156,9 @@ def main():
     post["published_at"] = datetime.datetime.now().isoformat()
     post["ig_media_id"] = result.get("id")
     archive.setdefault("posts", []).append(post)
-
     save_yaml(CALENDAR_PATH, calendar)
     save_yaml(ARCHIVE_PATH, archive)
-    print(f"發布成功並已歸檔：{post['id']}")
+    print(f"[info] 發布成功並已歸檔：{post['id']}")
 
 
 if __name__ == "__main__":
