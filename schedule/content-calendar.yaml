@@ -40,19 +40,3 @@ posts:
   - content/momo/2026-05/20260520/momo_video_turn_run_20260520.mp4
   status: draft
   scheduled_time: 08:00
-- id: momo-20260804
-  character: momo
-  date: '2026-08-04'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 保持幽默感是生活中最好的良藥。🐾 即使遇到小挫折，也要像狗狗一樣，甩甩毛，繼續開心地向前跑！✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 正能量
-  - 幽默生活
-  - ShibaInu
-  media:
-  - content/momo/momo_day06_home_funny.jpg
-  status: ready
-  scheduled_time: 07:00
