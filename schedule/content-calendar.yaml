@@ -40,19 +40,3 @@ posts:
   - content/momo/2026-05/20260520/momo_video_turn_run_20260520.mp4
   status: draft
   scheduled_time: 08:00
-- id: momo-20260806
-  character: momo
-  date: '2026-08-06'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 找一個安靜的角落，給心靈一點呼吸的空間。🐾 休息是為了走更長遠的路，今天也要溫柔地對待自己。✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 平靜生活
-  - 自我照顧
-  - ShibaInu
-  media:
-  - content/momo/momo_day07_home_calm.jpg
-  status: ready
-  scheduled_time: 07:00
