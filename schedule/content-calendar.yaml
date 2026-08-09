@@ -54,5 +54,21 @@ posts:
   - ShibaInu
   media:
   - content/momo/momo_profile_03_20260515.jpg
+  status: published
+  scheduled_time: 07:00
+- id: momo-20260810
+  character: momo
+  date: '2026-08-10'
+  platforms:
+  - instagram
+  caption: 早安！☀️ 新的一週開始了，給自己一個微笑吧。🐾 無論前方有多少挑戰，只要保持正能量，每一步都能走得踏實且精彩。✨
+  hashtags:
+  - 默默
+  - 心靈雞湯
+  - 週一加油
+  - 正能量
+  - ShibaInu
+  media:
+  - content/momo/momo_profile_04_20260515.jpg
   status: ready
   scheduled_time: 07:00
