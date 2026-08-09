@@ -56,3 +56,19 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
+- id: momo-20260812
+  character: momo
+  date: '2026-08-12'
+  platforms:
+  - instagram
+  caption: 早安！☀️ 生活中的每一件小事，都值得被溫柔對待。🐾 保持好奇心，去發現那些藏在日常裡的微光吧！✨
+  hashtags:
+  - 默默
+  - 心靈雞湯
+  - 日常微光
+  - 溫柔生活
+  - ShibaInu
+  media:
+  - content/momo/momo_profile_05_20260515.jpg
+  status: ready
+  scheduled_time: 07:00
