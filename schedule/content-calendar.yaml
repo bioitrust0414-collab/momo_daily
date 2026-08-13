@@ -56,19 +56,3 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
-- id: momo-20260814
-  character: momo
-  date: '2026-08-14'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 星期五到了，給自己一個大大的微笑吧。🐾 忙碌了一週，別忘了留點時間感受身邊的小確幸。願你的週末序曲充滿喜悅與放鬆！✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 週五愉快
-  - 小確幸
-  - ShibaInu
-  media:
-  - reference/templates/weekday/momo_morning_fri.jpg
-  status: ready
-  scheduled_time: 07:00
