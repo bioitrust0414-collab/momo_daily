@@ -56,3 +56,19 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
+- id: momo-20260816
+  character: momo
+  date: '2026-08-16'
+  platforms:
+  - instagram
+  caption: 早安！☀️ 週日早晨，讓節奏慢下來。🐾 給自己一點時間去感受呼吸，去擁抱陽光。願你的這一天充滿平靜與喜悅，為新的一週補充滿滿的能量！✨
+  hashtags:
+  - 默默
+  - 心靈雞湯
+  - 週日愉快
+  - 慢生活
+  - ShibaInu
+  media:
+  - reference/templates/weekday/momo_morning_sun.jpg
+  status: ready
+  scheduled_time: 07:00
