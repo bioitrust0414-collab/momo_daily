@@ -56,3 +56,19 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
+- id: momo-20260818
+  character: momo
+  date: '2026-08-18'
+  platforms:
+  - instagram
+  caption: 早安！☀️ 新的一週已經開始，別忘了給自己一點鼓勵。🐾 無論今天的天氣如何，只要心中有光，每一步都能走得溫暖且堅定。願你的週二充滿朝氣與動力！✨
+  hashtags:
+  - 默默
+  - 心靈雞湯
+  - 週二加油
+  - 正能量
+  - ShibaInu
+  media:
+  - content/momo/momo_day05_store.jpg
+  status: ready
+  scheduled_time: 07:00
