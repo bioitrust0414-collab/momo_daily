@@ -56,22 +56,6 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
-- id: momo-20260826
-  character: momo
-  date: '2026-08-26'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 週三的小步伐，是支撐我們繼續前進的溫柔力量。🐾 聽聽音樂，喝杯溫水，給緊湊的步伐一點喘息的空間。願你的今天平靜而美好！✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 週三小確幸
-  - 內心平靜
-  - ShibaInu
-  media:
-  - content/momo/momo_day10_portrait.jpg
-  status: ready
-  scheduled_time: 07:00
 - id: momo-20260828
   character: momo
   date: '2026-08-28'
