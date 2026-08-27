@@ -15,6 +15,7 @@ import os
 import sys
 import datetime
 import traceback
+from zoneinfo import ZoneInfo
 import yaml
 import requests
 
@@ -38,17 +39,46 @@ def save_yaml(path, data):
         yaml.safe_dump(data, f, allow_unicode=True, sort_keys=False)
 
 
+TAIPEI_TZ = ZoneInfo("Asia/Taipei")
+
+
+def taipei_today() -> str:
+    """Return today's ISO date in Taipei; never use the runner's local timezone."""
+    return datetime.datetime.now(TAIPEI_TZ).date().isoformat()
+
+
+def normalize_post_date(value):
+    """Normalize YAML date values and reject malformed dates."""
+    if isinstance(value, datetime.datetime):
+        return value.date().isoformat()
+    if isinstance(value, datetime.date):
+        return value.isoformat()
+    if isinstance(value, str):
+        try:
+            return datetime.date.fromisoformat(value.strip()).isoformat()
+        except ValueError:
+            return None
+    return None
+
+
 def find_todays_post(calendar):
-    today = datetime.date.today().isoformat()
+    today = taipei_today()
     posts = calendar.get("posts", [])
-    print(f"[info] 今天日期：{today}，calendar 中共有 {len(posts)} 筆貼文")
+    print(f"[info] 台北今日日期：{today}，calendar 中共有 {len(posts)} 筆貼文")
+
+    same_day = []
     for post in posts:
-        if post.get("date") == today and post.get("status") == "ready":
-            return post
-    # 額外印出今天日期有出現、但狀態不是 ready 的項目，方便判斷是不是狀態沒設對
-    same_day = [p for p in posts if p.get("date") == today]
+        post_date = normalize_post_date(post.get("date"))
+        if post_date == today:
+            same_day.append(post)
+            if post.get("status") == "ready":
+                print(f"[info] 日期嚴格驗證通過：{post.get('id')} date={post_date}")
+                return post
+        elif post.get("status") == "ready":
+            print(f"[info] 跳過非今日貼文：{post.get('id')} date={post.get('date')}，台北今日={today}")
+
     if same_day:
-        print(f"[info] 今天有 {len(same_day)} 筆貼文但狀態不是 ready："
+        print(f"[info] 台北今天有 {len(same_day)} 筆貼文但狀態不是 ready："
               f"{[(p.get('id'), p.get('status')) for p in same_day]}")
     return None
 
@@ -123,7 +153,7 @@ def main():
 
     post = find_todays_post(calendar)
     if not post:
-        print("[info] 今天沒有 status=ready 的貼文，略過。")
+        print("[info] 台北今天沒有 date == 今日且 status=ready 的貼文，安全略過，不會發布其他日期的貼文。")
         return
 
     if not verify_token(token, ig_user_id):
@@ -153,7 +183,7 @@ def main():
     # 歸檔：從待發布移除，附上發布資訊後加進 archive
     calendar["posts"] = [p for p in calendar["posts"] if p is not post]
     post["status"] = "published"
-    post["published_at"] = datetime.datetime.now().isoformat()
+    post["published_at"] = datetime.datetime.now(TAIPEI_TZ).isoformat()
     post["ig_media_id"] = result.get("id")
     archive.setdefault("posts", []).append(post)
     save_yaml(CALENDAR_PATH, calendar)
