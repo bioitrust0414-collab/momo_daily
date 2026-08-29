@@ -56,22 +56,6 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
-- id: momo-20260831
-  character: momo
-  date: '2026-08-31'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 新的一週，先給自己一個肯定的微笑。🐾 不必一次走完所有路，只要踏穩今天的每一步，就已經在靠近想去的地方。星期一也要溫柔出發！✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 週一加油
-  - 溫柔出發
-  - ShibaInu
-  media:
-  - reference/templates/weekday/momo_morning_mon.jpg
-  status: ready
-  scheduled_time: 07:00
 - id: momo-20260901
   character: momo
   date: '2026-09-01'
@@ -88,22 +72,6 @@ posts:
   - content/momo/momo_day01_taipei101.jpg
   status: ready
   scheduled_time: 07:00
-- id: momo-20260902
-  character: momo
-  date: '2026-09-02'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 週三的你，已經比想像中更努力了。🐾 先停下來深呼吸，肯定自己的進度，再帶著平靜的力量繼續前進。✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 週三加油
-  - 平靜力量
-  - ShibaInu
-  media:
-  - reference/templates/weekday/momo_morning_wed.jpg
-  status: ready
-  scheduled_time: 07:00
 - id: momo-20260903
   character: momo
   date: '2026-09-03'
@@ -118,22 +86,6 @@ posts:
   - ShibaInu
   media:
   - reference/templates/weekday/momo_morning_thu.jpg
-  status: ready
-  scheduled_time: 07:00
-- id: momo-20260904
-  character: momo
-  date: '2026-09-04'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 星期五到了，謝謝這一週努力沒有放棄的自己。🐾 把疲憊留在昨天，帶著笑容迎接週末，也把一點小小的幸福留給自己。✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 週五愉快
-  - 謝謝自己
-  - ShibaInu
-  media:
-  - reference/character-profile/momo_profile_01.jpg
   status: ready
   scheduled_time: 07:00
 - id: momo-20260905
