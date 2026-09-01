@@ -56,22 +56,6 @@ posts:
   - content/momo/momo_profile_03_20260515.jpg
   status: published
   scheduled_time: 07:00
-- id: momo-20260901
-  character: momo
-  date: '2026-09-01'
-  platforms:
-  - instagram
-  caption: 早安！☀️ 九月的第一天，願我們把新的期待放進日常。🐾 慢慢累積的小小努力，終有一天會變成讓自己驕傲的光。今天也要相信自己！✨
-  hashtags:
-  - 默默
-  - 心靈雞湯
-  - 九月你好
-  - 相信自己
-  - ShibaInu
-  media:
-  - content/momo/momo_day01_taipei101.jpg
-  status: ready
-  scheduled_time: 07:00
 - id: momo-20260903
   character: momo
   date: '2026-09-03'
