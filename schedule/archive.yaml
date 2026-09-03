@@ -314,3 +314,21 @@ posts:
   scheduled_time: 07:00
   published_at: '2026-09-01T00:34:48.135678+00:00'
   permalink: https://www.instagram.com/p/DcuYmm1FIdt/
+- id: momo-20260903
+  character: momo
+  date: '2026-09-03'
+  platforms:
+  - instagram
+  caption: 早安！☀️ 生活的美好，常常藏在一杯溫水、一陣微風和一個被善待的瞬間裡。🐾 今天也記得照顧自己的心，讓日子慢慢發亮。✨
+  hashtags:
+  - 默默
+  - 心靈雞湯
+  - 日常微光
+  - 溫柔生活
+  - ShibaInu
+  media:
+  - reference/templates/weekday/momo_morning_thu.jpg
+  status: published
+  scheduled_time: 07:00
+  published_at: '2026-09-03T02:25:08.311974+00:00'
+  permalink: https://www.instagram.com/p/Dczu4GcESA4/
